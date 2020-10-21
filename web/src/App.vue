@@ -7,6 +7,7 @@
 
 <script>
 import { initFbsdk } from './config/fbAuth.js';
+import axios from 'axios';
 
   export default {
     components: {
@@ -17,12 +18,14 @@ import { initFbsdk } from './config/fbAuth.js';
     },
 
     methods: {
-      loginWithFacebook () {
-        window.FB.login(response => {
-          console.log({
+      async loginWithFacebook () {
+        window.FB.login(async (response) => {
+          const res = await axios.post('http://localhost:3333/user', {
             accessToken: response.authResponse.accessToken,
-            provider_id: response.authResponse.userID,
+            user_id: response.authResponse.userID,
           });
+
+          console.log(res.data);
         })
       }
     }
