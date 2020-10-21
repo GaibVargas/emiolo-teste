@@ -20,7 +20,7 @@ import axios from 'axios';
     methods: {
       async loginWithFacebook () {
         window.FB.login(async (response) => {
-          const res = await axios.post('http://localhost:3333/user', {
+          const res = await axios.post('http://localhost:3333/user/facebook', {
             accessToken: response.authResponse.accessToken,
             user_id: response.authResponse.userID,
           });
