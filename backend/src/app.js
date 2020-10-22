@@ -46,4 +46,26 @@ app.post('/user/facebook', async(req, res) => {
   });
 });
 
+app.post('/user/google', async(req, res) => {
+  const { name, image_url, provider_id } = req.body;
+
+  User.findOne({ provider_id }, (err, user) => {
+    if(err) throw(err);
+
+    if(!err && user !== null) return res.json(user);
+
+    const newUser = new User({
+      provider_id,
+      name,
+      image_url
+    });
+
+    newUser.save((err) => {
+      if(err) throw(err);
+
+      return res.json(newUser);
+    }); 
+  })
+})
+
 app.listen(3333);
