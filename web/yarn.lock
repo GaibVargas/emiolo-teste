@@ -8099,6 +8099,11 @@ vue-facebook-login-component@^3.0.0:
   resolved "https://registry.yarnpkg.com/vue-facebook-login-component/-/vue-facebook-login-component-3.0.0.tgz#c89ea3484614938b8539a5a3a5a5280bd5c0b62b"
   integrity sha512-0Al7nqaoEb3LUoNvJ4OfBZ/ynYNkvmaUuylF7JM/c+GtYiwib8arRw5ukRyvgMwldkliHAQA18StkqSkllLgSg==
 
+vue-google-signin-button@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/vue-google-signin-button/-/vue-google-signin-button-1.0.4.tgz#733e9fea786ff730278c8eef8be9f594adc8d7b8"
+  integrity sha512-spmf+qPQQ1zAEndDxybYsf22U47eYPuvU9cb1N9YETmPQ4+UBG9ALLxgID1mHkusvBVclRyxmvJc3zc7hD56wg==
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
