@@ -27,7 +27,7 @@
     data() {
       return {
         googleSignInParams: {
-          client_id: "8152271176-kmh3112u4e340vmk51q5i42g1unusr3m.apps.googleusercontent.com"
+          client_id: process.env.VUE_APP_CLIENT_ID_GOOGLE
         },
       }
     },
@@ -41,7 +41,7 @@
         window.FB.login(async (response) => {
           if(!response.authResponse) return;
 
-          const res = await axios.post('http://localhost:3333/user/facebook', {
+          const res = await axios.post(`${process.env.VUE_APP_API_URL}/user/facebook`, {
             accessToken: response.authResponse.accessToken,
             user_id: response.authResponse.userID,
           });
@@ -58,7 +58,7 @@
 
       async onSignInGoogleSuccess (googleUser) {
         const profile = googleUser.getBasicProfile();
-        const res = await axios.post('http://localhost:3333/user/google', {
+        const res = await axios.post(`${process.env.VUE_APP_API_URL}/user/google`, {
           name: profile.Ad,
           image_url: profile.ZJ,
           provider_id: profile.KT

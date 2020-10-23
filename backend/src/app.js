@@ -1,9 +1,10 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const FB = require('fb');
 
-mongoose.connect('mongodb://localhost:27017/emiolo-teste', {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -12,8 +13,8 @@ mongoose.connect('mongodb://localhost:27017/emiolo-teste', {
 
 FB.options({version: 'v2.4'});
 FB.extend({
-  appId: '977577506079007', 
-  appSecret: '093dc30838b1d056b3cf75098715b4ce'
+  appId: process.env.FACEBOOK_CLIENT_ID, 
+  appSecret: process.env.FACEBOOK_APP_SECRET
 });
 
 const app = express();

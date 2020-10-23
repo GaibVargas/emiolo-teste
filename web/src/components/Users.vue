@@ -26,7 +26,7 @@ export default {
   },
 
   created: async function() {
-    const { data } = await axios.get('http://localhost:3333/users');
+    const { data } = await axios.get(`${process.env.VUE_APP_API_URL}/users`);
 
     this.users = data;
   }
