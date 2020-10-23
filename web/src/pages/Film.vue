@@ -46,7 +46,8 @@ export default {
     const { data } = await axios.get(`https://swapi.dev/api/films/${this.$route.params.id}/`);
 
     data.characters.forEach(async (url) => {
-      const response = await axios.get(url);
+      const httpsUrl = url.replace('http', 'https');
+      const response = await axios.get(httpsUrl);
       this.characters = [...this.characters, { 
         name: response.data.name,
         id: response.data.url.split('/')[[response.data.url.split('/').length - 2]]  

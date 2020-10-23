@@ -27,7 +27,7 @@
     data() {
       return {
         googleSignInParams: {
-          client_id: process.env.VUE_APP_CLIENT_ID_GOOGLE
+          client_id: String(process.env.VUE_APP_CLIENT_ID_GOOGLE)
         },
       }
     },

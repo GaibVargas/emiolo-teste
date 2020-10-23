@@ -83,4 +83,4 @@ app.get('/users', async(req, res) => {
   return res.json(users);
 });
 
-app.listen(3333);
+app.listen(process.env.PORT || 3333);
