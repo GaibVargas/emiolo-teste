@@ -41,24 +41,36 @@
         window.FB.login(async (response) => {
           if(!response.authResponse) return;
 
-          /*const res = */await axios.post('http://localhost:3333/user/facebook', {
+          const res = await axios.post('http://localhost:3333/user/facebook', {
             accessToken: response.authResponse.accessToken,
             user_id: response.authResponse.userID,
           });
+          
+          const userInfo = {
+            user: res.data,
+            loginType: 'facebook'
+          };
+          this.$store.commit('setLoginUser', userInfo);
 
-          this.$router.push({ name: 'home', /*params: { id: res.data.id, type: 'facebook' }*/});
+          this.$router.push({ name: 'home' });
         })
       },
 
       async onSignInGoogleSuccess (googleUser) {
         const profile = googleUser.getBasicProfile();
-        /*const res = */await axios.post('http://localhost:3333/user/google', {
+        const res = await axios.post('http://localhost:3333/user/google', {
           name: profile.Ad,
           image_url: profile.ZJ,
           provider_id: profile.KT
         });
 
-        this.$router.push({ name: 'home', /*params: { id: res.data.id, type: 'google' } */});
+        const userInfo = {
+            user: res.data,
+            loginType: 'google'
+          };
+        this.$store.commit('setLoginUser', userInfo);
+
+        this.$router.push({ name: 'home' });
       },
 
       onSignInGoogleError (error) {

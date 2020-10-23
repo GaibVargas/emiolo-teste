@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <nav>
+      <img :src="$store.state.loginUser.user.user.image_url" :alt="$store.state.loginUser.user.user.name">
       <h1>Star Viewars</h1>
 
       <ul>
@@ -14,18 +15,26 @@
 </template>
 
 <script>
+import { removeUser } from '../config/utils';
+
 export default {
   methods: {
     logout() {
-      window.FB.logout(() => {
-        this.$router.push('/').catch(() => {});
-      });
-      
-      window.gapi.auth2.getAuthInstance().signOut().then(() => {
-        this.$router.push('/').catch(() => {});
-      });
+      removeUser();
+
+      if(this.$store.state.loginUser.loginType === 'facebook') {
+        window.FB.logout(() => {
+          this.$router.push('/').catch(() => {});
+        });
+      }
+
+      if(this.$store.state.loginUser.loginType === 'google') {
+        window.gapi.auth2.getAuthInstance().signOut().then(() => {
+          this.$router.push('/').catch(() => {});
+        });
+      }   
     }
-  }
+  },
 }
 </script>
 
@@ -53,6 +62,13 @@ nav {
   color: #fff;
   display: flex;
   align-items: center;
+}
+
+nav img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 .user {

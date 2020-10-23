@@ -1,5 +1,5 @@
 export const initFbsdk = () => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     window.fbAsyncInit = function() {
       FB.init({
         appId: '977577506079007',
