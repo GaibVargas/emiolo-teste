@@ -30,7 +30,7 @@ app.post('/user/facebook', async(req, res) => {
   User.findOne({ provider_id: result.id }, (err, user) => {
     if(err) throw(err);
 
-    if(!err && user !== null) return res.json({ id: user._id });
+    if(!err && user !== null) return res.json({ user: user });
 
     const newUser = new User({
       provider_id: result.id,
@@ -41,7 +41,7 @@ app.post('/user/facebook', async(req, res) => {
     newUser.save((err) => {
       if(err) throw(err);
 
-      return res.json({ id: newUser._id });
+      return res.json({ user: newUser });
     }); 
   });
 });
@@ -52,7 +52,7 @@ app.post('/user/google', async(req, res) => {
   User.findOne({ provider_id }, (err, user) => {
     if(err) throw(err);
 
-    if(!err && user !== null) return res.json({ id: user._id });
+    if(!err && user !== null) return res.json({ user: user });
 
     const newUser = new User({
       provider_id,
@@ -63,7 +63,7 @@ app.post('/user/google', async(req, res) => {
     newUser.save((err) => {
       if(err) throw(err);
 
-      return res.json({ id: newUser._id });
+      return res.json({ user: newUser });
     }); 
   })
 });
