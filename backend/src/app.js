@@ -30,7 +30,7 @@ app.post('/user/facebook', async(req, res) => {
   User.findOne({ provider_id: result.id }, (err, user) => {
     if(err) throw(err);
 
-    if(!err && user !== null) return res.json(user);
+    if(!err && user !== null) return res.json({ id: user._id });
 
     const newUser = new User({
       provider_id: result.id,
@@ -41,7 +41,7 @@ app.post('/user/facebook', async(req, res) => {
     newUser.save((err) => {
       if(err) throw(err);
 
-      return res.json(newUser);
+      return res.json({ id: newUser._id });
     }); 
   });
 });
@@ -52,7 +52,7 @@ app.post('/user/google', async(req, res) => {
   User.findOne({ provider_id }, (err, user) => {
     if(err) throw(err);
 
-    if(!err && user !== null) return res.json(user);
+    if(!err && user !== null) return res.json({ id: user._id });
 
     const newUser = new User({
       provider_id,
@@ -63,9 +63,23 @@ app.post('/user/google', async(req, res) => {
     newUser.save((err) => {
       if(err) throw(err);
 
-      return res.json(newUser);
+      return res.json({ id: newUser._id });
     }); 
   })
-})
+});
+
+app.get('/user/:id', async(req, res) => {
+  const { id } = req.params;
+
+  const user = await User.findById(id);
+
+  return res.json(user);
+});
+
+app.get('/users', async(req, res) => {
+  const users = await User.find();
+
+  return res.json(users);
+});
 
 app.listen(3333);
