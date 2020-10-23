@@ -1,8 +1,10 @@
 <template>
   <div class="header">
     <nav>
-      <img :src="$store.state.loginUser.user.user.image_url" :alt="$store.state.loginUser.user.user.name">
-      <h1>Star Viewars</h1>
+      <div>
+        <img :src="$store.state.loginUser.user.user.image_url" :alt="$store.state.loginUser.user.user.name">
+        <h1>Star Viewars</h1>
+      </div>
 
       <ul>
         <li><router-link to="/home">Filmes</router-link></li>
@@ -46,6 +48,7 @@ export default {
   justify-content: space-between;
   padding: 10px 25px;
   width: 100vw;
+  flex-direction: column;
 }
 
 .header button {
@@ -56,11 +59,19 @@ export default {
   border-radius: 2px;
   padding: 5px 15px;
   cursor: pointer;
+  align-self: flex-end;
 }
 
 nav {
   color: #fff;
   display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+nav div {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -88,9 +99,9 @@ nav img {
 }
 
 ul {
-  margin-left: 150px;
   list-style: none;
   display: flex;
+  margin: 15px 0;
 }
 
 li {
@@ -108,5 +119,24 @@ li + li {
 
 li:hover {
   font-weight: bolder;
+}
+
+@media(min-width: 650px) {
+  .header {
+    flex-direction: row;
+  }
+
+  .header nav {
+    flex-direction: row;
+  }
+
+  .header nav ul {
+    margin-left: 150px;
+  }
+
+  .header button {
+    align-self: flex-start;
+    justify-self: flex-start;
+  }
 }
 </style>

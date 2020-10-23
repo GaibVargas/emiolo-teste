@@ -1,7 +1,7 @@
 export const initFbsdk = () => {
-  return new Promise((resolve) => {
+  return new Promise(() => {
     window.fbAsyncInit = function() {
-      FB.init({
+      window.FB.init({
         appId: process.env.VUE_APP_CLIENT_ID_FACEBOOK,
         cookie: true,
         xfbml: true,
